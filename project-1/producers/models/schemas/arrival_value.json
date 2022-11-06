@@ -1,3 +1,66 @@
-{
-  "TODO": "Complete this Schema! (Make sure to delete this Key/Value Pair!"
-}
+[
+  {
+    "namespace": "com.udacity",
+    "type": "enum",
+    "name": "arrival.direction",
+    "symbols": [
+      "a",
+      "b"
+    ]
+  },
+  {
+    "namespace": "com.udacity",
+    "type": "enum",
+    "name": "arrival.line",
+    "symbols": [
+      "blue",
+      "green",
+      "red"
+    ]
+  },
+  {
+    "namespace": "com.udacity",
+    "type": "enum",
+    "name": "arrival.train_status",
+    "symbols": [
+      "out_of_service",
+      "in_service",
+      "broken_down"
+    ]
+  },
+  {
+    "namespace": "com.udacity",
+    "type": "record",
+    "name": "arrival.value",
+    "fields": [
+      {
+        "name": "station_id",
+        "type": "int"
+      },
+      {
+        "name": "train_id",
+        "type": "string"
+      },
+      {
+        "name": "direction",
+        "type": "arrival.direction"
+      },
+      {
+        "name": "line",
+        "type": "arrival.line"
+      },
+      {
+        "name": "train_status",
+        "type": "arrival.train_status"
+      },
+      {
+        "name": "prev_station_id",
+        "type": ["null", "int"]
+      },
+      {
+        "name": "prev_direction",
+        "type": ["null", "arrival.direction"]
+      }
+    ]
+  }
+]
