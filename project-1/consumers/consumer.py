@@ -39,7 +39,8 @@ class KafkaConsumer:
         self.broker_properties = {
             "client.id": "sim-consumer",
             "group.id": "sim-consumer",
-            "bootstrap.servers": "PLAINTEXT://localhost:9092"
+            "bootstrap.servers": "PLAINTEXT://localhost:9092",
+            "auto.offset.reset": "earliest" if offset_earliest else "latest"
         }
 
         # : Create the Consumer, using the appropriate type.
@@ -98,7 +99,7 @@ class KafkaConsumer:
             message = self.consumer.poll(0.5)
             if message is None:
                 # logger.warning("timed out polling Kafka")
-                return 0
+                return message_count
             elif message.error() is not None:
                 logger.warning("got message error from Kafka")
                 logger.warning(message.error())
